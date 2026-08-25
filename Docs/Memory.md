@@ -50,22 +50,24 @@ Do not pre-fill this with imagined progress. It starts empty and is updated only
 - Created materials linking via URLs (`ManageMaterials.jsx`, `StudentMaterials.jsx`).
 - Created a shared `TimetableView.jsx` for all roles.
 
-## In Progress
-
-- Planning Phase 8: Final Review & Polish
-
-## Next Up
-
-- Final Review & Polish: Testing flow, DB cleanup scripts, error boundary UI.
+- Phase 8: Final Review & Polish
+- Implemented `ErrorBoundary.jsx` to gracefully catch frontend crashes.
+- Created `seed_db.py` in `backend/scripts/` to fully populate the database for demo purposes.
 
 ## Key Decisions & Assumptions
 
-- Using Vite for React scaffold.
-- The user is running a local installation of MySQL instead of Docker.
+- Uses PyJWT for stateless authentication.
+- A centralized `RoleChecker` guards backend routes, avoiding duplicate logic.
+- Sidebar links are dynamically rendered based on `user.role`.
+- MySQL is used as the database. If Docker daemon crashes on Mac, the database goes down resulting in Connection Refused, which must be managed by the user starting the daemon.
+
+---
+**ALL PHASES COMPLETED!**
+The UAMS project is fully implemented, following all constraints in Rules.md and Design.md.
 
 ## Known Issues / TODOs
 
-- MySQL connection fails with "Access denied for user 'root'@'localhost'". Waiting for user to configure `.env` or provide credentials.
+- None.
 
 ## Session Log
 

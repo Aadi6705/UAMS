@@ -23,59 +23,63 @@ import StudentGrades from './pages/student/StudentGrades';
 import StudentMaterials from './pages/student/StudentMaterials';
 import TimetableView from './pages/shared/TimetableView';
 
+import ErrorBoundary from './components/ErrorBoundary';
+
 function App() {
   return (
     <Router>
-      <AuthProvider>
-        <Routes>
-          {/* Public routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          
-          {/* Protected routes - Admin */}
-          <Route path="/admin" element={
-            <ProtectedRoute allowedRoles={['ADMIN']}>
-              <DashboardLayout />
-            </ProtectedRoute>
-          }>
-            <Route index element={<AdminDashboard />} />
-            <Route path="departments" element={<ManageDepartments />} />
-            <Route path="faculty" element={<ManageFaculty />} />
-            <Route path="students" element={<ManageStudents />} />
-            <Route path="courses" element={<ManageCourses />} />
-            <Route path="timetable" element={<TimetableView />} />
-          </Route>
-          
-          {/* Protected routes - Faculty */}
-          <Route path="/faculty" element={
-            <ProtectedRoute allowedRoles={['FACULTY']}>
-              <DashboardLayout />
-            </ProtectedRoute>
-          }>
-            <Route index element={<FacultyDashboard />} />
-            <Route path="attendance" element={<MarkAttendance />} />
-            <Route path="marks" element={<ManageMarks />} />
-            <Route path="materials" element={<ManageMaterials />} />
-            <Route path="timetable" element={<TimetableView />} />
-          </Route>
-          
-          {/* Protected routes - Student */}
-          <Route path="/student" element={
-            <ProtectedRoute allowedRoles={['STUDENT']}>
-              <DashboardLayout />
-            </ProtectedRoute>
-          }>
-            <Route index element={<StudentDashboard />} />
-            <Route path="attendance" element={<StudentAttendance />} />
-            <Route path="grades" element={<StudentGrades />} />
-            <Route path="materials" element={<StudentMaterials />} />
-            <Route path="timetable" element={<TimetableView />} />
-          </Route>
-          
-          {/* Fallback route */}
-          <Route path="*" element={<Navigate to="/login" replace />} />
-        </Routes>
-      </AuthProvider>
+      <ErrorBoundary>
+        <AuthProvider>
+          <Routes>
+            {/* Public routes */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Navigate to="/login" replace />} />
+            
+            {/* Protected routes - Admin */}
+            <Route path="/admin" element={
+              <ProtectedRoute allowedRoles={['ADMIN']}>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }>
+              <Route index element={<AdminDashboard />} />
+              <Route path="departments" element={<ManageDepartments />} />
+              <Route path="faculty" element={<ManageFaculty />} />
+              <Route path="students" element={<ManageStudents />} />
+              <Route path="courses" element={<ManageCourses />} />
+              <Route path="timetable" element={<TimetableView />} />
+            </Route>
+            
+            {/* Protected routes - Faculty */}
+            <Route path="/faculty" element={
+              <ProtectedRoute allowedRoles={['FACULTY']}>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }>
+              <Route index element={<FacultyDashboard />} />
+              <Route path="attendance" element={<MarkAttendance />} />
+              <Route path="marks" element={<ManageMarks />} />
+              <Route path="materials" element={<ManageMaterials />} />
+              <Route path="timetable" element={<TimetableView />} />
+            </Route>
+            
+            {/* Protected routes - Student */}
+            <Route path="/student" element={
+              <ProtectedRoute allowedRoles={['STUDENT']}>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }>
+              <Route index element={<StudentDashboard />} />
+              <Route path="attendance" element={<StudentAttendance />} />
+              <Route path="grades" element={<StudentGrades />} />
+              <Route path="materials" element={<StudentMaterials />} />
+              <Route path="timetable" element={<TimetableView />} />
+            </Route>
+            
+            {/* Fallback route */}
+            <Route path="*" element={<Navigate to="/login" replace />} />
+          </Routes>
+        </AuthProvider>
+      </ErrorBoundary>
     </Router>
   );
 }
