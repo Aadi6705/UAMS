@@ -11,12 +11,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from app.controllers import auth_controller, admin_controller, course_controller, attendance_controller
+from app.controllers import auth_controller, admin_controller, course_controller, attendance_controller, marks_controller, material_controller, timetable_controller
 
 app.include_router(auth_controller.router)
 app.include_router(admin_controller.router)
 app.include_router(course_controller.router)
 app.include_router(attendance_controller.router)
+app.include_router(marks_controller.router)
+app.include_router(material_controller.router)
+app.include_router(timetable_controller.router)
 
 @app.get("/")
 def read_root():

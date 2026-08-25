@@ -45,13 +45,18 @@ Do not pre-fill this with imagined progress. It starts empty and is updated only
 - Created `GET /api/attendance/student/dashboard` which calculates overall/per-course percentages and prediction logic.
 - Created `StudentAttendance.jsx` to render large visual cards, progress bars, and warnings if attendance falls below 75%.
 
+- Phase 7: Marks, Timetable, Materials
+- Created marks upload logic for Faculty and CGPA calculation dashboard for Students (`StudentGrades.jsx`).
+- Created materials linking via URLs (`ManageMaterials.jsx`, `StudentMaterials.jsx`).
+- Created a shared `TimetableView.jsx` for all roles.
+
 ## In Progress
 
-- Planning Phase 7: Marks, Timetable, Materials
+- Planning Phase 8: Final Review & Polish
 
 ## Next Up
 
-- Marks, Timetable, Materials: Upload/update marks, Timetable CRUD, Materials upload.
+- Final Review & Polish: Testing flow, DB cleanup scripts, error boundary UI.
 
 ## Key Decisions & Assumptions
 

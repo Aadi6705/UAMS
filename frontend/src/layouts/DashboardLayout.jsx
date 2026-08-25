@@ -49,6 +49,11 @@ const DashboardLayout = () => {
                     Courses
                   </NavLink>
                 </li>
+                <li className="nav-item">
+                  <NavLink to="/admin/timetable" className={({isActive}) => `nav-link rounded ${isActive ? 'bg-primary text-white' : 'text-dark hover-bg-light'}`}>
+                    Timetable
+                  </NavLink>
+                </li>
               </>
             )}
 
@@ -61,7 +66,22 @@ const DashboardLayout = () => {
                 </li>
                 <li className="nav-item">
                   <NavLink to="/faculty/attendance" className={({isActive}) => `nav-link rounded ${isActive ? 'bg-primary text-white' : 'text-dark hover-bg-light'}`}>
-                    Mark Attendance
+                    Manage Attendance
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/faculty/marks" className={({isActive}) => `nav-link rounded ${isActive ? 'bg-primary text-white' : 'text-dark hover-bg-light'}`}>
+                    Manage Marks
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/faculty/materials" className={({isActive}) => `nav-link rounded ${isActive ? 'bg-primary text-white' : 'text-dark hover-bg-light'}`}>
+                    Manage Materials
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/faculty/timetable" className={({isActive}) => `nav-link rounded ${isActive ? 'bg-primary text-white' : 'text-dark hover-bg-light'}`}>
+                    My Timetable
                   </NavLink>
                 </li>
               </>
@@ -77,6 +97,21 @@ const DashboardLayout = () => {
                 <li className="nav-item">
                   <NavLink to="/student/attendance" className={({isActive}) => `nav-link rounded ${isActive ? 'bg-primary text-white' : 'text-dark hover-bg-light'}`}>
                     My Attendance
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/student/grades" className={({isActive}) => `nav-link rounded ${isActive ? 'bg-primary text-white' : 'text-dark hover-bg-light'}`}>
+                    My Grades
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/student/materials" className={({isActive}) => `nav-link rounded ${isActive ? 'bg-primary text-white' : 'text-dark hover-bg-light'}`}>
+                    Course Materials
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/student/timetable" className={({isActive}) => `nav-link rounded ${isActive ? 'bg-primary text-white' : 'text-dark hover-bg-light'}`}>
+                    My Timetable
                   </NavLink>
                 </li>
               </>

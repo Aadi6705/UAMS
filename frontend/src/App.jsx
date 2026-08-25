@@ -15,8 +15,13 @@ import DashboardLayout from './layouts/DashboardLayout';
 import ManageCourses from './pages/admin/ManageCourses';
 import FacultyDashboard from './pages/faculty/FacultyDashboard';
 import MarkAttendance from './pages/faculty/MarkAttendance';
+import ManageMarks from './pages/faculty/ManageMarks';
+import ManageMaterials from './pages/faculty/ManageMaterials';
 import StudentDashboard from './pages/student/StudentDashboard';
 import StudentAttendance from './pages/student/StudentAttendance';
+import StudentGrades from './pages/student/StudentGrades';
+import StudentMaterials from './pages/student/StudentMaterials';
+import TimetableView from './pages/shared/TimetableView';
 
 function App() {
   return (
@@ -25,6 +30,7 @@ function App() {
         <Routes>
           {/* Public routes */}
           <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Navigate to="/login" replace />} />
           
           {/* Protected routes - Admin */}
           <Route path="/admin" element={
@@ -37,6 +43,7 @@ function App() {
             <Route path="faculty" element={<ManageFaculty />} />
             <Route path="students" element={<ManageStudents />} />
             <Route path="courses" element={<ManageCourses />} />
+            <Route path="timetable" element={<TimetableView />} />
           </Route>
           
           {/* Protected routes - Faculty */}
@@ -47,6 +54,9 @@ function App() {
           }>
             <Route index element={<FacultyDashboard />} />
             <Route path="attendance" element={<MarkAttendance />} />
+            <Route path="marks" element={<ManageMarks />} />
+            <Route path="materials" element={<ManageMaterials />} />
+            <Route path="timetable" element={<TimetableView />} />
           </Route>
           
           {/* Protected routes - Student */}
@@ -57,6 +67,9 @@ function App() {
           }>
             <Route index element={<StudentDashboard />} />
             <Route path="attendance" element={<StudentAttendance />} />
+            <Route path="grades" element={<StudentGrades />} />
+            <Route path="materials" element={<StudentMaterials />} />
+            <Route path="timetable" element={<TimetableView />} />
           </Route>
           
           {/* Fallback route */}
