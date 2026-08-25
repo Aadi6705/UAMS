@@ -9,7 +9,7 @@ Do not pre-fill this with imagined progress. It starts empty and is updated only
 
 ## Current Status
 
-- **Active phase:** Phase 2 (Authentication & JWT)
+- **Active phase:** Phase 4 (Faculty Module)
 - **Last updated:** 2026-08-26
 
 ## Completed
@@ -20,15 +20,38 @@ Do not pre-fill this with imagined progress. It starts empty and is updated only
 - Created all SQLAlchemy models for tables: users, departments, students, faculty, courses, enrollments, attendance, marks, timetable, materials.
 - Setup `config/database.py` and `init_db.py` for database creation, migration, and seeding.
 - MySQL database running via Docker and seeded successfully.
+- Phase 2: Authentication & JWT
+- Created `POST /api/auth/register`, `POST /api/auth/login`, `POST /api/auth/logout`.
+- Implemented `bcrypt` hashing and `PyJWT` token generation.
+- Created `get_current_user` and `RoleChecker` FastAPI dependencies.
+- Created React `AuthContext`, `api.js` Axios interceptor, `Login.jsx` UI, and `ProtectedRoute.jsx`.
+- Phase 3: Admin Module
+- Created CRUD API for departments, faculty, and students (`admin_service.py`, `admin_controller.py`).
+- Implemented `DashboardLayout` for the frontend.
+- Created `AdminDashboard`, `ManageDepartments`, `ManageFaculty`, and `ManageStudents` React pages.
+
+- Phase 4: Course & Enrollment Management
+- Created schemas, service, and controller for Courses, Enrollments, and Timetable (for assignments).
+- Implemented `ManageCourses` Admin UI to add courses, enroll students, and assign faculty.
+- Implemented conditional sidebar in `DashboardLayout` based on user role.
+- Created `FacultyDashboard` (shows assigned courses) and `StudentDashboard` (shows enrolled courses).
+
+- Phase 5: Faculty Attendance Module
+- Created API for bulk attendance creation/upsert (`attendance_service.py`, `attendance_controller.py`).
+- Added `MarkAttendance.jsx` frontend to allow Faculty to select an assigned course and mark PRESENT/ABSENT for enrolled students.
+- Prevented duplicate rows by fetching existing data and editing it if it exists for the given course and date.
+
+- Phase 6: Student Attendance Dashboard
+- Created `GET /api/attendance/student/dashboard` which calculates overall/per-course percentages and prediction logic.
+- Created `StudentAttendance.jsx` to render large visual cards, progress bars, and warnings if attendance falls below 75%.
 
 ## In Progress
 
-- Planning Phase 2: Authentication & JWT endpoints
+- Planning Phase 7: Marks, Timetable, Materials
 
 ## Next Up
 
-- `POST /api/auth/register` and `POST /api/auth/login`
-- JWT verification middleware/dependencies
+- Marks, Timetable, Materials: Upload/update marks, Timetable CRUD, Materials upload.
 
 ## Key Decisions & Assumptions
 

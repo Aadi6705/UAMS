@@ -6,10 +6,17 @@ import ProtectedRoute from './components/ProtectedRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
-// Placeholder dashboards until implemented
-const AdminDashboard = () => <div className="p-4"><h1>Admin Dashboard</h1><p>Welcome, Admin!</p></div>;
-const FacultyDashboard = () => <div className="p-4"><h1>Faculty Dashboard</h1><p>Welcome, Faculty!</p></div>;
-const StudentDashboard = () => <div className="p-4"><h1>Student Dashboard</h1><p>Welcome, Student!</p></div>;
+import AdminDashboard from './pages/admin/AdminDashboard';
+import ManageDepartments from './pages/admin/ManageDepartments';
+import ManageFaculty from './pages/admin/ManageFaculty';
+import ManageStudents from './pages/admin/ManageStudents';
+import DashboardLayout from './layouts/DashboardLayout';
+
+import ManageCourses from './pages/admin/ManageCourses';
+import FacultyDashboard from './pages/faculty/FacultyDashboard';
+import MarkAttendance from './pages/faculty/MarkAttendance';
+import StudentDashboard from './pages/student/StudentDashboard';
+import StudentAttendance from './pages/student/StudentAttendance';
 
 function App() {
   return (
@@ -20,18 +27,36 @@ function App() {
           <Route path="/login" element={<Login />} />
           
           {/* Protected routes - Admin */}
-          <Route element={<ProtectedRoute allowedRoles={['ADMIN']} />}>
-            <Route path="/admin/*" element={<AdminDashboard />} />
+          <Route path="/admin" element={
+            <ProtectedRoute allowedRoles={['ADMIN']}>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }>
+            <Route index element={<AdminDashboard />} />
+            <Route path="departments" element={<ManageDepartments />} />
+            <Route path="faculty" element={<ManageFaculty />} />
+            <Route path="students" element={<ManageStudents />} />
+            <Route path="courses" element={<ManageCourses />} />
           </Route>
           
           {/* Protected routes - Faculty */}
-          <Route element={<ProtectedRoute allowedRoles={['FACULTY']} />}>
-            <Route path="/faculty/*" element={<FacultyDashboard />} />
+          <Route path="/faculty" element={
+            <ProtectedRoute allowedRoles={['FACULTY']}>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }>
+            <Route index element={<FacultyDashboard />} />
+            <Route path="attendance" element={<MarkAttendance />} />
           </Route>
           
           {/* Protected routes - Student */}
-          <Route element={<ProtectedRoute allowedRoles={['STUDENT']} />}>
-            <Route path="/student/*" element={<StudentDashboard />} />
+          <Route path="/student" element={
+            <ProtectedRoute allowedRoles={['STUDENT']}>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }>
+            <Route index element={<StudentDashboard />} />
+            <Route path="attendance" element={<StudentAttendance />} />
           </Route>
           
           {/* Fallback route */}
