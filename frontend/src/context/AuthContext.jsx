@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 export const AuthContext = createContext();
 
@@ -21,6 +22,7 @@ export const AuthProvider = ({ children }) => {
 
     // Listen for unauthorized events from the API interceptor
     const handleUnauthorized = () => {
+      toast.error('Session expired, please log in again.');
       setUser(null);
       navigate('/login');
     };

@@ -1,13 +1,17 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { Navigate } from 'react-router-dom';
+import useDocumentTitle from '../hooks/useDocumentTitle';
 
 const Login = () => {
+  useDocumentTitle('Login');
   const { user, login } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const [showPassword, setShowPassword] = useState(false);
 
   // If already logged in, redirect to respective dashboard
   if (user) {
@@ -55,15 +59,25 @@ const Login = () => {
             
             <div className="mb-4">
               <label className="form-label" htmlFor="password">Password</label>
-              <input 
-                type="password" 
-                id="password" 
-                className="form-control" 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                autoComplete="current-password"
-              />
+              <div className="input-group">
+                <input 
+                  type={showPassword ? 'text' : 'password'} 
+                  id="password" 
+                  className="form-control" 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  autoComplete="current-password"
+                />
+                <button 
+                  className="btn btn-outline-secondary" 
+                  type="button" 
+                  onClick={() => setShowPassword(!showPassword)}
+                  tabIndex="-1"
+                >
+                  <i className={`bi ${showPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'}`}></i>
+                </button>
+              </div>
             </div>
             
             <button 

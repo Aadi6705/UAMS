@@ -75,6 +75,7 @@ The UAMS project is fully implemented, following all constraints in Rules.md and
 |---|---|
 | — | Docs created (PRD, Architecture, Rules, Phases, Design, Memory) — no code written yet |
 | 2026-08-26 | Scaffolded Phase 1 backend/frontend, wrote DB models, waiting on MySQL connection. |
+| 2026-08-26 | UI Enhancement Pass #2 Complete: Added 404/403 pages, enhanced DashboardLayout (collapsible sidebar, global search), improved forms (password toggle, validation), updated tables (sorting, CSV export), added `useDocumentTitle` hook, and applied UI visual polish. |
 
 ---
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { Toaster } from 'react-hot-toast';
 import Login from './pages/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,11 +25,13 @@ import StudentMaterials from './pages/student/StudentMaterials';
 import TimetableView from './pages/shared/TimetableView';
 
 import ErrorBoundary from './components/ErrorBoundary';
+import NotFound from './pages/shared/NotFound';
 
 function App() {
   return (
     <Router>
       <ErrorBoundary>
+        <Toaster position="top-right" toastOptions={{ duration: 3000, style: { background: '#333', color: '#fff' } }} />
         <AuthProvider>
           <Routes>
             {/* Public routes */}
@@ -76,7 +79,7 @@ function App() {
             </Route>
             
             {/* Fallback route */}
-            <Route path="*" element={<Navigate to="/login" replace />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
       </ErrorBoundary>

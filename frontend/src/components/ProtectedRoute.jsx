@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import AccessDenied from '../pages/shared/AccessDenied';
 
-const ProtectedRoute = ({ allowedRoles }) => {
+const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user, loading } = useContext(AuthContext);
 
   if (loading) {
@@ -20,16 +21,13 @@ const ProtectedRoute = ({ allowedRoles }) => {
     return <Navigate to="/login" replace />;
   }
 
-  // Role not permitted -> redirect to unauthorized or their own dashboard
+  // Role not permitted -> render AccessDenied page
   if (allowedRoles && !allowedRoles.includes(user.role)) {
-    // For simplicity, just redirect them to their home based on role
-    if (user.role === 'ADMIN') return <Navigate to="/admin" replace />;
-    if (user.role === 'FACULTY') return <Navigate to="/faculty" replace />;
-    return <Navigate to="/student" replace />;
+    return <AccessDenied />;
   }
 
-  // Authorized -> render child routes (Outlet)
-  return <Outlet />;
+  // Authorized -> render children if provided, else Outlet
+  return children ? children : <Outlet />;
 };
 
 export default ProtectedRoute;

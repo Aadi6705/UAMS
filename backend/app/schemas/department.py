@@ -8,6 +8,10 @@ class DepartmentBase(BaseModel):
 class DepartmentCreate(DepartmentBase):
     pass
 
+class DepartmentUpdate(BaseModel):
+    name: Optional[str] = None
+    code: Optional[str] = None
+
 class DepartmentResponse(DepartmentBase):
     id: int
 

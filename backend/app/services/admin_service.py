@@ -26,6 +26,32 @@ def create_department(db: Session, department: DepartmentCreate) -> Department:
     db.refresh(new_dept)
     return new_dept
 
+def update_department(db: Session, dept_id: int, department_data) -> Department:
+    db_dept = db.query(Department).filter(Department.id == dept_id).first()
+    if not db_dept:
+        raise HTTPException(status_code=404, detail="Department not found")
+    
+    if department_data.code and department_data.code != db_dept.code:
+        if db.query(Department).filter(Department.code == department_data.code).first():
+            raise HTTPException(status_code=400, detail="Department code already exists")
+        db_dept.code = department_data.code
+    
+    if department_data.name:
+        db_dept.name = department_data.name
+        
+    db.commit()
+    db.refresh(db_dept)
+    return db_dept
+
+def delete_department(db: Session, dept_id: int):
+    db_dept = db.query(Department).filter(Department.id == dept_id).first()
+    if not db_dept:
+        raise HTTPException(status_code=404, detail="Department not found")
+    
+    db.delete(db_dept)
+    db.commit()
+    return {"message": "Department deleted successfully"}
+
 # --- Faculty ---
 def get_faculty_list(db: Session) -> List[Faculty]:
     return db.query(Faculty).all()
